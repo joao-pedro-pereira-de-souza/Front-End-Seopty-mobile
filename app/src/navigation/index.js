@@ -1,22 +1,61 @@
 import React from 'react'
+import {View , TouchableOpacity , StyleSheet} from 'react-native'
 import { NavigationContainer} from '@react-navigation/native'
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
+import LinearGradient from 'react-native-linear-gradient';
+
+//#region Import Screens 
 import Home from '../screens/home'
+import History from  '../screens/history'
+import Chart from '../screens/details'
+import Large from '../screens/larges/'
+import Config from '../screens/config'
+//#endregion
+
 import { Icons , COLORS} from '../constants/index'
 
 const Tab = createBottomTabNavigator()
+
+const ButtonChart = ({navigation}) =>{
+    return(
+
+        
+
+                <LinearGradient  colors={[COLORS.greenLight, COLORS.blueDark02]}  
+                style={{
+
+                    width:75, 
+                    height:75, 
+                    borderRadius:75 /2,
+                    alignItems:'center',
+                    justifyContent:'center',
+                    marginBottom:30 ,
+                    ...styles.shadow
+
+                    }}>
+                         <Icons.chart width={25} height={25} fill='#fff'/>
+                        <TouchableOpacity onPress={navigation}>
+                    
+                            
+                        </TouchableOpacity>
+                    
+                </LinearGradient>
+
+
+        
+
+    )
+}
+
 export default function index() {
 
     const TabIcons = {
 
-        Home:{
-
-            Icon: Icons.home_filled,
-
-        },
-        History:{
-            Icon : Icons.text_document_inverted
-        }
+        Home: Icons.home_filled ,
+        History: Icons.document_gradient,
+        Larges: Icons.large_gradient,
+        Config: Icons.config_gradient,
+        
 
     }
     
@@ -27,23 +66,47 @@ export default function index() {
                     headerShown:false,
                     headerShadowVisible:false,
                     tabBarShowLabel:false,
+                
+                    tabBarIconStyle:{
+                        
+                    },
                     tabBarStyle:{
 
-                        height: 70,
+                        height: 80,
                         borderTopRightRadius:30,
-                        borderTopLeftRadius:30
+                        borderTopLeftRadius:30,
+                        paddingHorizontal:10,
+                        paddingBottom:10
+
+
 
                     },
 
-                    tabBarIcon:({color , size , focused}) =>{
+                    tabBarIcon:({focused}) =>{
 
+                        
                         if(route.name =='Home'){
-                            return <Icons.home_gradient width={30} height={30} isFocused={focused} color={focused? '' : COLORS.greenLight}/>
+                            return <Icons.home_gradient width={27} height={27} isFocused={focused} color={focused? '' : COLORS.greyLight}/>
+                        }
+                        if(route.name == 'History'){
+                            return <Icons.document_gradient width={27} height={27} isFocused={focused} color={focused? '' : COLORS.greyLight} />
                         }
                         
-                        const {Icon} = TabIcons[route.name]
+                        if(route.name == 'Chart'){
+                            return ButtonChart(() => navigation.navigate('Chart'))
+                        }
+                        
+                        if(route.name == 'Larges'){
+                            return <Icons.large_gradient width={27} height={27} isFocused={focused} color={focused? '' : COLORS.greyLight} />
+                        }
+                        if(route.name == 'Config'){
 
-                        return <Icon width={30} height={30} fill={color}/>
+                            return <Icons.config_gradient width={27} height={27} isFocused={focused} color={focused? '' : COLORS.greyLight} />
+
+                        }
+                        
+
+                       
                         
                     }
 
@@ -51,7 +114,26 @@ export default function index() {
                 })
             }>
                 <Tab.Screen name='Home' component={Home}/>
+                <Tab.Screen name='History' component={History} />
+                <Tab.Screen name='Chart' component={Chart} />
+                <Tab.Screen name='Larges' component={Large} />
+                <Tab.Screen name='Config' component={Config} />
+
             </Tab.Navigator>
         </NavigationContainer>
     )
 }
+
+const styles = StyleSheet.create({
+    shadow:{
+        shadowColor: "#000",
+shadowOffset: {
+	width: 0,
+	height: 5,
+},
+shadowOpacity: 0.36,
+shadowRadius: 6.68,
+
+elevation: 11,
+    }
+})

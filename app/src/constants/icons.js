@@ -9,8 +9,10 @@ import more_horizontal from '../assets/icons/more-horizontal.svg'
 import text_document_inverted from '../assets/icons/text-document-inverted.svg'
 import th_large from '../assets/icons/th-large.svg'
 
+import document_gradient from '../assets/icons/IconDocumentGradient'
 import home_gradient from '../assets/icons/IconHomeGradient'
-
+import large_gradient from '../assets/icons/IconThLargeGradient'
+import config_gradient from '../assets/icons/IconConfigGradient'
 export default {
     arrow_back,
     arrow_drop_down,
@@ -22,5 +24,8 @@ export default {
     more_horizontal,
     text_document_inverted,
     th_large,
-    home_gradient
+    home_gradient,
+    document_gradient,
+    large_gradient,
+    config_gradient
 }
