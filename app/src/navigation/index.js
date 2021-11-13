@@ -21,7 +21,7 @@ const ButtonChart = ({navigation}) =>{
 
         
 
-                <LinearGradient  colors={[COLORS.greenLight, COLORS.blueDark02]}  
+                <LinearGradient  colors={[COLORS.blueLight, COLORS.blueDark02]}  
                 style={{
 
                     width:75, 
